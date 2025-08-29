@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Fleet page</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+
+
+
+    body {
+      background-color: #F9F9F9;
+      font-family: "Source Sans 3", sans-serif;
+    }
+    .sidebar {
+      width: 256px;
+      height: 100%;
+      transition: left 0.4s ease;
+    }
+    nav a {
+      font-size: 16px;
+      color: #7E8389;
+      margin-bottom: 1rem;
+      width: 224px;
+      height: 44px;
+      border-radius: 8px;
+      display: block;
+      text-decoration: none;
+    }
+    .sidebar{
+      z-index: 1001;
+      left: -256px;
+    }
+    .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+    }
+    .overlay.active{
+      display: block;
+    }
+    .sidebar.openmenu {
+      left: 0;
+}
+.logo{
+  display: flex;
+  gap: 3rem;
+}
+.logo img:first-child{
+   width: 2rem;
+   margin-right: 0rem;
+}
+
+
+ .nav-link{
+  color: #7E8389;
+ }
+ .nav-link:hover ,.activ{
+  background-color: #62AD76; 
+  color: white;
+ }
+
+.lang-btn{
+  color: #7E8389;
+   border-color: #E9E9E9; 
+   width: 131px; 
+   height: 44px;
+}
+.bell-btn{
+  width: 40px; 
+  height: 40px;
+  background-color: #E9E9E9; 
+  border-color: #E9E9E9;
+}
+.userimg{
+  width: 40px; 
+  height: 40px;}
+.userimg img{
+  object-fit: cover;
+  border-color: #E9E9E9;
+}
+header{
+  background-color: #fff; width: 100%; height: 70px;
+}
+.main-content{
+   position: relative;
+    margin-top: 1.5rem;
+}
+
+.card { 
+      overflow: hidden;
+}
+.t-head{
+  min-width: 120px ;
+  background-color: #EBF5ED !important;
+  font-weight: 600;
+  font-size: 16px;
+}
+.main-content {
+   padding: 10px;     
+}
+
+/* SMALLER MOBILE SCREEN SIZE */
+.add-oil-btn{
+  background-color:#62AD76;
+}
+.add-oil-btn:hover{
+  background-color:#a0dfb1!important;
+}
+.nopages-render{
+  margin-top: 10px;
+}
+
+.nopages-render li {
+ 
+  width: 32px;
+  height: 32px;
+   font-weight: 600;
+   text-align: center;
+   padding-top: 3px;
+   
+} 
+/* When nav link is hovered or active */
+.nav-link:hover img,
+.nav-link.activ img {
+  filter: brightness(0) invert(1);  /* makes dark icons white */
+}
+
+.pageactive{
+  border: 2px solid #62AD76;
+  border-radius: 10px;
+}
+
+.nopages-render li  a{
+   font-size: 16px;
+   font-weight: 600;
+   text-decoration: none;
+   color: #1A1A1A;
+} 
+.nopages-render li i{
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 4px;
+  color: #1A1A1A;
+}
+
+.overlayform {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+    }
+    .overlayform.active{
+      display: block;
+    }
+
+
+
+.placeholder{
+  color: rgb(180, 42, 42) ;
+}
+.t-row-data td{
+  font-size: 16px;
+  color: #4B4B4B;
+  font-weight: 400;
+  padding-left: 0.8rem;
+}
+
+.activebadge{
+   padding: 10px;
+   font-size: 12px!important;
+   font-weight: 600;
+   cursor: pointer;
+   background-color: transparent;
+  font-size: 14px;
+  border: 1px solid #62AD76;
+}
+.activebadge a{
+    color: #62AD76;
+  
+}
+
+
+.nav-link img{
+  width: 18px;
+  margin-bottom: 0.3rem;
+  margin-right: 0.1rem;
+ }
+
+
+ 
+.modal-dialog{
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav-link img{
+  width: 18px;
+  margin-bottom: 0.3rem;
+  margin-right: 0.1rem;
+ }
+.modal-header,.modal-footer{
+        border: none;
+
+}
+.modal-header{
+   display: block;
+   text-align: center;
+   padding:0px;
+   margin-top: 2rem;
+}
+.modal-body{
+  padding: 0;
+  padding: 0 1.5rem;
+}
+.modal-footer{
+  justify-content: center;
+  padding: 0;
+  padding-bottom: 20px;
+  
+}
+.btn{
+  width: 130px;
+}
+.modal-body label{
+  color: #1A1A1A;
+  font-weight: 600;
+  font-size: 16px;
+  margin-top: 2px;
+}
+
+.modal-body input{
+  background-color: #FAFAFA;
+  border: 2px solid #E9E9E9;
+  height: 48px;
+}
+.modal-body input::placeholder{
+  color: #7E8389;
+  font-weight: 400;
+  font-size: 14px;
+
+}
+.modal-title{
+  color: #1A1A1A;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 24px;
+}
+.modal-desc{
+     color: #4B4B4B;
+     font-weight: 400;
+     font-size: 14px;
+}
+
+#location{
+   position: relative;
+}
+.form-group img{
+}
+
+/* UPLOAD FILE BTN STYLING */
+.upload-btn{
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+    height: 93px;
+    border: 2px solid #62AD76;
+    background-color: #62AD761A;
+}
+.upload-btn:hover{
+    background-color: unset;
+}
+.upload-btn span{
+    color: #7E8389;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+@media screen and (max-width:392px) {
+   .search-input{
+        width: 190px;
+   }
+   .container{
+        position: absolute;
+        top: 0;
+        left: unset;
+        width: 100%;
+        max-width: 350px;
+        background-color: #FFFFFF;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+        z-index: 10002;
+    }
+}
+
+/* TABLET VIEW  */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+ 
+}
+
+
+
+@media screen and (min-width: 1025px) and (hover: hover) and (pointer: fine) {
+/* Laptop-only styles */
+.modal-dialog {
+    max-width: 600px; /* set width */
+  }
+    .sidebar{
+      z-index: unset;
+      left: unset;
+    }
+    .overlay{
+      display: none;
+    }
+    .overlay.active{
+      display: none;
+    }
+    .main-content {
+        margin-left: 280px;
+        margin-right: 2rem;
+        position: relative;
+      }
+      .t-head{
+  min-width: 130px ;
+ 
+}
+.nopages-render{
+  margin-top: 10px;
+}
+
+.nopages-render li {
+ 
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+   font-weight: 600;
+   text-align: center;
+   padding-top: 3px;
+   
+} 
+
+.pageactive{
+  border: 2px solid #62AD76;
+}
+
+.nopages-render li  a{
+   font-size: 16px;
+   font-weight: 600;
+   text-decoration: none;
+   color: #999999;
+} 
+.nopages-render li i{
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 4px;
+  color: #999999;
+}
+
+
+}
+
+
+
+
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Topbar -->
+
+  <header class="d-flex align-items-center" >
+      <i class="fa-solid fa-bars ms-3 fs-1  " onclick="toggleNavbar()"></i>
+          
+     <div class="d-flex justify-content-end align-items-center px-4 py-3 ms-auto" >
+
+    <button class="lang-btn border border-2 me-3"
+    >
+      Language <i class="fa-solid fa-angle-down ms-2"></i>
+    </button>
+    <button class="bell-btn d-flex align-items-center justify-content-center border border-2 rounded-circle" >
+      <i class="fa-regular fa-bell" style="color: #7E8389;"></i>
+    </button>
+    <div class="ms-3 userimg" >
+      <img src="./assets/personimg.jpg" class="w-100 h-100 rounded-circle border border-2" >
+    </div>
+  </div>
+
+  </header>
+
+  <!-- Sidebar -->
+  <aside class="sidebar position-fixed top-0 bg-dark text-white
+  ">
+      <!-- Logo -->
+      <div class="logo mt-4 mb-4 d-flex align-items-center justify-content-center" >
+        <div>
+  
+           <img src="./assets/icon/logo_icon.png" alt="logo_icon">
+           <img src="./assets/icon/logo_text.png" alt="logo_text">
+          </div>
+  
+          <div>
+            <img src="./assets/icon/right_panel_open_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24 1.png" alt="">
+          </div>
+  
+      </div>
+
+     <!-- Menu -->
+     <nav class="p-3">
+      <a href="Dashboard.html" class=" nav-link px-3 py-2 " >
+         <img src="./assets/icon/streamline-plump_home-1.png" alt="Dashboard_icon"> Dashboard
+        </a>
+      <a href="Oilrequest.html" class=" nav-link px-3 py-2 " >
+        <img src="./assets/icon/hugeicons_oil-barrel (1).png" alt="Barrel_icon">
+        Oil Post Requests</a>
+      <a href="Fleet.html" class=" nav-link px-3 py-2 activ">
+        <img src="./assets/icon/solar_shop-linear.png" alt="Shop_icon">
+        Fleet</a>
+      <a href="#" class=" nav-link px-3 py-2 ">
+        <img src="./assets/icon/solar_money-bag-linear.png" alt="biling_icon">
+        Billing and Invoices</a>
+    </nav>
+  </aside>
+
+  <div class="main-content " >
+    <!-- Search & Add Button -->
+    <div class="d-flex justify-content-between align-items-center mb-3" >
+        <div class="position-relative search-input">
+          <input type="text" class=" form-control ps-5" placeholder="Search">
+          <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary"></i>
+        </div>
+        <button class="btn text-white add-oil-btn" onclick="handleoilform()"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <i class="fa-solid fa-plus me-2"></i> Add Fleet
+        </button>
+      </div>
+  
+     
+      <div class="card ">
+        <div class="table-responsive" >
+          <table class="table align-middle table-borderless">
+            <thead class="" >
+              <tr>
+                <th class="custom-td-padding t-head"  >Driver Name</th>
+                <th class="custom-td-padding t-head">Mobile Number</th>
+                <th class="custom-td-padding t-head ">Vehicle Type</th>
+                <th class="custom-td-padding t-head ">License Plate</th>
+                <th class="custom-td-padding t-head ">Status</th>
+                <th class="custom-td-padding t-head ">Actions</th>
+
+              </tr>
+            </thead>
+            <tbody>
+                
+                
+              <tr>
+                 <!-- <td colspan="6" class="text-center" style="color: #4B4B4B; font-size: 14px; font-weight: 400;">No Data Available in Table</td> -->
+
+                 <tr>
+                    <td>John</td>
+                    <td>+966 5098765</td>
+                    <td>Van</td>
+                    <td>ABC-123</td>
+                    <td class="">
+                        
+                        <span class="badge activebadge "><a href="#" class="text-decoration-none ">Active</a></span>
+                     </td>
+                    
+                    <td>
+                      <img src="./assets/icon/edit.png" alt="edit">
+                      <img src="./assets/icon/delete (1).png" alt="delete">
+                 
+                    </td>
+                  </tr>
+              </tr>
+  
+              
+  
+              <!-- Add more rows here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+         <ul class="nopages-render d-flex justify-content-end align-items-center list-unstyled">
+          <li><i class="fa-solid fa-less-than"></i></li>
+              <li class="pageactive"><a href="" >1</a></li>
+              <li><a href="">2</a></li>
+              <li><a href="">3</a></li>
+              <li><a href="">4</a></li>
+              <li><a href="">5</a></li>
+              <li><i class="fa-solid fa-greater-than"></i></li>
+
+         </ul>
+      </div>
+
+ 
+      
+
+      <!-- FORM MODEL FOR ADD BRANCHES -->
+
+
+      
+      <div class="modal fade  " style=""  id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-modal="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header flex-direction-column">
+              <h5 class="modal-title" id="exampleModalLabel">Add Fleet</h5>
+              <p class="modal-desc">Add vehicle and driver details.</p>
+             
+             
+            </div>
+            <div class="modal-body">
+              <form>
+
+
+                <div class="row">
+                    <div class="form-group col">
+                      <label for="drivername" class="col-form-label">Driver Name</label>
+                      <input type="text" class="form-control" id="drivername" placeholder="Placeholder">
+                    </div>
+                    <div class="form-group col">
+                      <label for="mobilenum" class="col-form-label">Mobile Number</label>
+                      <input type="text" class="form-control" id="mobilenum" placeholder="Placeholder">
+                    </div>
+    
+                  </div>
+  
+
+                <div class="form-group">
+                  <label for="vehicletype" class="col-form-label">Vechile Type</label>
+                  <input type="text" class="form-control" id="vehicletype" placeholder="Placeholder" >
+                </div>
+             
+                
+
+                <div class="form-group">
+                    <label for="licenseplate" class="col-form-label">License Plate</label>
+                    <input type="text" class="form-control" id="licenseplate" placeholder="Placeholder" >
+                  </div>
+                
+                <div class="form-group col">
+                  <label for="username" class="col-form-label">Username</label>
+                  <input type="text" class="form-control" id="username" placeholder="Placeholder">
+                </div>
+
+                <div class="form-group col">
+                  <label for="password" class="col-form-label">Password</label>
+                  <div class="input-group">
+                    <input type="password" id="password" placeholder="Placeholder" required minlength="6"
+                      class="form-control" style="background-color: #FAFAFA; height: 44px;">
+                    <span id="togglePassword" class="input-group-text">
+                      <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor" width="20" height="20">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M2.25 12s3.75-6.75 9.75-6.75S21.75 12 21.75 12s-3.75 6.75-9.75 6.75S2.25 12 2.25 12z" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                    <label  class="form-label mt-2">Documents</label>
+                    <div class=>
+                  
+                      <!-- Vehicle Registration -->
+                      <label  id="vehicleUpload"   class="btn btn-outline-success w-100 upload-btn mb-3">
+                        <img src="./assets/icon/bytesize_upload.png" class="d-block mx-auto" alt="upload-icon">
+
+                        <input type="file" hidden onchange="showFile(this, 'vehicleUpload')">
+                       
+                        <span> Upload Vehicle Registration</span>
+                      </label>
+                  
+                      <!-- Iqama & Driver’s License side by side -->
+                      <div class="d-flex gap-2">
+                        <label class="btn btn-outline-success flex-fill upload-btn" id="iqamaUpload">
+                            <img src="./assets/icon/bytesize_upload.png" class="d-block mx-auto" alt="upload-icon">
+                          <input type="file" hidden  onchange="showFile(this, 'iqamaUpload')">
+                          <span  >Upload Iqama</span>
+                        </label>
+                        <label class="btn btn-outline-success flex-fill upload-btn"  id="licenseUpload">
+                            <img src="./assets/icon/bytesize_upload.png" class="d-block mx-auto" alt="upload-icon">
+                          <input type="file" hidden >
+                          <span>  Upload Driver’s License</span>
+                        
+                        </label>
+                      </div>
+                  
+                    </div>
+                  </div>
+                  
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" data-dismiss="modal">Add</button>
+              <button type="button" class="btn btn-white border border-black" data-bs-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+  <div class="overlayform" id="overlayform"></div>
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+     
+
+
+// logic for password icon changes
+     const togglePassword = document.getElementById("togglePassword");
+    const password = document.getElementById("password");
+    const eyeIcon = document.getElementById("eyeIcon");
+
+    togglePassword.addEventListener("click", function () {
+      const type = password.getAttribute("type") === "password" ? "text" : "password";
+      password.setAttribute("type", type);
+
+      if (type === "text") {
+        eyeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round"
+          d="M2.25 12s3.75-6.75 9.75-6.75S21.75 12 21.75 12s-3.75 6.75-9.75 6.75S2.25 12 2.25 12z" />
+          <path stroke-linecap="round" stroke-linejoin="round"
+          d="M12 9.75a2.25 2.25 0 110 4.5 2.25 2.25 0 010-4.5z" />`;
+      } else {
+        eyeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round"
+          d="M3.98 8.223a10.478 10.478 0 00-1.726 3.777c.999 2.982 3.83 6.75 9.746 6.75 1.597 0 3.084-.262 4.428-.732M6.228 6.228a10.451 10.451 0 014.522-1.228c5.916 0 8.747 3.768 9.746 6.75a10.451 10.451 0 01-1.228 2.622M3 3l18 18" />`;
+      }
+    });
+
+
+
+// lOGIC FOR UPLOAD FILES
+
+function showFile(input, containerId) {
+  const container = document.getElementById(containerId);
+  if (input.files && input.files[0]) {
+    const file = input.files[0];
+    const fileSize = (file.size / 1024).toFixed(1) + " KB";
+    container.innerHTML = `
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <i class="bi bi-file-earmark-text"></i> ${file.name} (${fileSize})
+        </div>
+        <div>
+          <a href="#" onclick="replaceFile('${containerId}')">Replace</a> | 
+          <a href="#" onclick="removeFile('${containerId}')">Remove</a>
+        </div>
+      </div>
+    `;
+  }
+}
+
+function replaceFile(containerId) {
+  document.querySelector(`#${containerId} input[type=file]`).click();
+}
+
+function removeFile(containerId) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = `
+    <label class="btn btn-outline-success w-100 mb-2">
+      <input type="file" hidden onchange="showFile(this, '${containerId}')">
+      Upload File
+    </label>
+  `;
+}
+
+
+
+    const sidebar = document.querySelector(".sidebar")
+    const container=document.querySelector('.container')
+    const overlay = document.getElementById("overlay");
+    const overlayform = document.getElementById("overlayform");
+    function toggleNavbar() {
+      sidebar.classList.add("openmenu");
+      overlay.classList.add("active");
+      document.body.classList.add("noscroll");
+    }
+  
+    function closebtn() {
+      sidebar.classList.remove("openmenu");
+      overlay.classList.remove("active");
+      document.body.classList.remove("noscroll");
+    }
+
+
+
+    
+    
+    
+
+
+    overlay.addEventListener("click", closebtn);
+  </script>
+</body>
+</html>

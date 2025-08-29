@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Oil Post Request page</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+
+
+
+    body {
+      background-color: #F9F9F9;
+      font-family: "Source Sans 3", sans-serif;
+    }
+    .sidebar {
+      width: 256px;
+      height: 100%;
+      transition: left 0.4s ease;
+    }
+    nav a {
+      font-size: 16px;
+      color: #7E8389;
+      margin-bottom: 1rem;
+      width: 224px;
+      height: 44px;
+      border-radius: 8px;
+      display: block;
+      text-decoration: none;
+    }
+    .sidebar{
+      z-index: 1001;
+      left: -256px;
+    }
+    .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+    }
+    .overlay.active{
+      display: block;
+    }
+    .sidebar.openmenu {
+      left: 0;
+}
+.logo{
+  display: flex;
+  gap: 3rem;
+}
+.logo img:first-child{
+   width: 2rem;
+   margin-right: 0rem;
+}
+
+
+ .nav-link{
+  color: #7E8389;
+ }
+ .nav-link:hover ,.activ{
+  background-color: #62AD76; 
+  color: white;
+ }
+
+.lang-btn{
+  color: #7E8389;
+   border-color: #E9E9E9; 
+   width: 131px; 
+   height: 44px;
+}
+.bell-btn{
+  width: 40px; 
+  height: 40px;
+  background-color: #E9E9E9; 
+  border-color: #E9E9E9;
+}
+.userimg{
+  width: 40px; 
+  height: 40px;}
+.userimg img{
+  object-fit: cover;
+  border-color: #E9E9E9;
+}
+header{
+  background-color: #fff; width: 100%; height: 70px;
+}
+.main-content{
+   position: relative;
+    margin-top: 1.5rem;
+}
+input{
+  color: #7E8389 !important;
+}
+.card { 
+      overflow: hidden;
+}
+.t-head{
+  min-width: 120px ;
+  background-color: #EBF5ED !important;
+  font-weight: 600;
+  font-size: 16px;
+}
+.main-content {
+   padding: 10px;     
+}
+
+/* SMALLER MOBILE SCREEN SIZE */
+.add-oil-btn{
+  background-color:#62AD76;
+}
+.add-oil-btn:hover{
+  background-color:#a0dfb1!important;
+}
+.nopages-render{
+  margin-top: 10px;
+}
+
+.nopages-render li {
+ 
+  width: 32px;
+  height: 32px;
+   font-weight: 600;
+   text-align: center;
+   padding-top: 3px;
+   
+} 
+/* When nav link is hovered or active */
+.nav-link:hover img,
+.nav-link.activ img {
+  filter: brightness(0) invert(1);  /* makes dark icons white */
+}
+
+.pageactive{
+  border: 2px solid #62AD76;
+  border-radius: 10px;
+}
+
+.nopages-render li  a{
+   font-size: 16px;
+   font-weight: 600;
+   text-decoration: none;
+   color: #1A1A1A;
+} 
+.nopages-render li i{
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 4px;
+  color: #1A1A1A;
+}
+
+.overlayform {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+    }
+    .overlayform.active{
+      display: block;
+    }
+
+
+ 
+/* drop menu logic */
+ 
+.dropdown-menu {
+      width: 100%;
+      transform: translateY(-20%) !important;
+    }
+    .dropdown-item{
+       padding: 10px;
+       background-color: #FAFAFA;
+    } 
+
+    .dropdown-item.active,
+    .dropdown-item:active {
+      background-color: #d4edda !important; /* light green */
+      color: #155724 !important;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      background: #e6f4ea;
+      border: 1px solid #28a745;
+      color: #155724;
+      border-radius: 20px;
+      padding: 2px 8px;
+      margin: 2px;
+      font-size: 14px;
+    }
+    .chip .remove-btn {
+      margin-left: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }   
+
+
+.placeholder{
+  color: rgb(180, 42, 42) ;
+}
+
+
+.t-row-data td{
+  font-size: 16px;
+  color: #4B4B4B;
+  font-weight: 400;
+  padding-left: 0.8rem;
+  border-bottom: 2px solid #E9E9E9;
+}
+
+
+table tr:last-child td {
+  border-bottom: none;
+}
+.statusbadge,.actionbadge{
+   padding: 10px;
+   border: 1px solid #EB2F96;
+   color: #EB2F96;
+   background-color: #FFF0F6;
+   font-size: 12px!important;
+   font-weight: 600;
+   cursor: pointer;
+}
+.actionbadge {
+  background-color: transparent;
+  font-size: 14px;
+  border: 1px solid #62AD76;
+  
+}
+.actionbadge a{
+  color: #62AD76;
+
+}
+.nav-link img{
+  width: 18px;
+  margin-bottom: 0.3rem;
+  margin-right: 0.1rem;
+ }
+ .filter-btn{
+    border: none;
+    width: 89px;
+    height: 44px;
+    background-color: #ffff;
+    border: 3px solid #E9E9E9;
+    border-radius: 10px;
+    margin-left: 1.5rem;
+    color: #4B4B4B;
+    font-size: 14px;
+    font-weight: 600;
+ }
+
+.modal-desc{
+    width: 100%;
+        max-width: 480px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #4B4B4B;
+        margin: 0 auto;
+}
+ 
+.modal-dialog{
+    height:90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav-link img{
+  width: 18px;
+  margin-bottom: 0.3rem;
+  margin-right: 0.1rem;
+ }
+.modal-header,.modal-footer{
+        border: none;
+
+}
+.modal-header{
+   display: block;
+   text-align: center;
+   padding:0px;
+   margin-top: 2rem;
+}
+.modal-body{
+  padding: 0;
+  padding: 0 1.5rem;
+}
+.modal-footer{
+  justify-content: center;
+  
+}
+.btn{
+  width: 130px;
+}
+.modal-body label{
+  color: #1A1A1A;
+  font-weight: 600;
+  font-size: 16px;
+  margin-top: 2px;
+}
+
+.modal-body input{
+  background-color: #FAFAFA;
+  border: 2px solid #E9E9E9;
+  height: 48px;
+}
+.modal-body input::placeholder{
+  color: #7E8389;
+  font-weight: 400;
+  font-size: 14px;
+
+}
+.modal-title{
+  color: #1A1A1A;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 24px;
+}
+.modal-desc{
+     color: #4B4B4B;
+     font-weight: 400;
+     font-size: 14px;
+}
+
+#location{
+   position: relative;
+}
+.form-group img{
+}
+
+.placeholder{
+
+  background-color: transparent !important;
+}
+/* drop menu logic */
+#scheduleDropdown{
+       background-color: #FAFAFA;
+       margin-top: 10px;
+    }
+
+@media screen and (max-width:392px) {
+   .search-input{
+        width: 190px;
+   }
+  
+    
+}
+/* TABLET VIEW  */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+}
+
+
+
+@media screen and (min-width: 1025px) and (hover: hover) and (pointer: fine) {
+/* Laptop-only styles */
+.modal-dialog {
+    max-width: 600px; /* set width */
+  }
+    .sidebar{
+      z-index: unset;
+      left: unset;
+    }
+    .overlay{
+      display: none;
+    }
+    .overlay.active{
+      display: none;
+    }
+    .main-content {
+        margin-left: 280px;
+        margin-right: 2rem;
+        position: relative;
+      }
+      .t-head{
+  min-width: 130px ;
+ 
+}
+.nopages-render{
+  margin-top: 10px;
+}
+
+.nopages-render li {
+ 
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+   font-weight: 600;
+   text-align: center;
+   padding-top: 3px;
+   
+} 
+
+.pageactive{
+  border: 2px solid #62AD76;
+}
+
+.nopages-render li  a{
+   font-size: 16px;
+   font-weight: 600;
+   text-decoration: none;
+   color: #999999;
+} 
+.nopages-render li i{
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 4px;
+  color: #999999;
+}
+
+
+}
+
+
+
+
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Topbar -->
+
+  <header class="d-flex align-items-center" >
+      <i class="fa-solid fa-bars ms-3 fs-1  " onclick="toggleNavbar()"></i>
+          
+     <div class="d-flex justify-content-end align-items-center px-4 py-3 ms-auto" >
+
+    <button class="lang-btn border border-2 me-3"
+    >
+      Language <i class="fa-solid fa-angle-down ms-2"></i>
+    </button>
+    <button class="bell-btn d-flex align-items-center justify-content-center border border-2 rounded-circle" >
+      <i class="fa-regular fa-bell" style="color: #7E8389;"></i>
+    </button>
+    <div class="ms-3 userimg" >
+      <img src="./assets/personimg.jpg" class="w-100 h-100 rounded-circle border border-2" >
+    </div>
+  </div>
+
+  </header>
+
+  <!-- Sidebar -->
+  <aside class="sidebar position-fixed top-0 bg-dark text-white
+  ">
+      <!-- Logo -->
+      <div class="logo mt-4 mb-4 d-flex align-items-center justify-content-center" >
+        <div>
+  
+           <img src="./assets/icon/logo_icon.png" alt="logo_icon">
+           <img src="./assets/icon/logo_text.png" alt="logo_text">
+          </div>
+  
+          <div>
+            <img src="./assets/icon/right_panel_open_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24 1.png" alt="">
+          </div>
+  
+      </div>
+
+     <!-- Menu -->
+     <nav class="p-3">
+      <a href="Dashboard.html" class=" nav-link px-3 py-2 " >
+         <img src="./assets/icon/streamline-plump_home-1.png" alt="Dashboard_icon"> Dashboard
+        </a>
+      <a href="Oilrequest.html" class="activ nav-link px-3 py-2 " >
+        <img src="./assets/icon/hugeicons_oil-barrel (1).png" alt="Barrel_icon">
+        Oil Post Request</a>
+      <a href="Fleet.html" class=" nav-link px-3 py-2 ">
+        <img src="./assets/icon/solar_shop-linear.png" alt="Shop_icon">
+        Fleet</a>
+      <a href="#" class=" nav-link px-3 py-2 ">
+        <img src="./assets/icon/solar_money-bag-linear.png" alt="biling_icon">
+        Billing and Invoices</a>
+    </nav>
+  </aside>
+
+  <div class="main-content " >
+    <!-- Search & Add Button -->
+
+    <div class="container my-3">
+        <div class="alert d-flex align-items-center justify-content-between " style="border: 2px solid #62AD76; width: 100%; max-width: 630px; background-color: #FFFFFF;" role="alert">
+          <div>
+            <i class="bi bi-check-circle-fill me-2"></i>
+          
+            <span style="font-size: 16px;color:#1A1A1A;  font-weight: 400;">  Your bid has been submitted. You can cancel it until the evaluation period ends.</span>
+          </div>
+        
+      </div>
+      
+
+
+    <div class="d-flex  align-items-center mb-3" >
+        <div class="position-relative search-input">
+          <input type="text" class=" form-control ps-5" placeholder="Search">
+          <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary"></i>
+        </div>
+
+        <button class="filter-btn">Filter   <i class="bi bi-chevron-down ms-2 " style="color: #4B4B4B;"></i> </button>
+      
+      </div>
+  
+     
+      <div class="card ">
+        <div class="table-responsive" >
+          <table class="table align-middle table-borderless">
+            <thead class="" >
+              <tr>
+                <th class="custom-td-padding t-head"  >Restaurant Name</th>
+                <th class="custom-td-padding t-head">Branch Name</th>
+                <th class="custom-td-padding t-head ">Approx Oil (ltr)</th>
+                <th class="custom-td-padding t-head ">Start Date</th>
+                <th class="custom-td-padding t-head ">End Date</th>
+                <th class="custom-td-padding t-head ">Pickup Days</th>
+                <th class="custom-td-padding t-head ">Status</th>
+                <th class="custom-td-padding t-head ">Actions</th>
+
+              </tr>
+            </thead>
+            <tbody>
+                
+                
+              <tr class="t-row-data"  >
+                <td class="">Al Arab</td>
+                <td class="">Al Arab Branch 1</td>
+                <td class="">150</td>
+                <td class="">25/07/25</td>
+                <td class="">25/08/25</td>
+                <td class=""> Mon,Wed,Fri</td>
+                <td><span class="badge  statusbadge">Open</span>
+                  <td><span class="badge actionbadge " data-bs-toggle="modal" data-bs-target="#exampleModal"><a href="#" class="text-decoration-none " >Place Bid</a></span>
+                </td>
+              </tr>
+  
+
+              <tr class="t-row-data"  >
+                <td class="">Al Arab</td>
+                <td class="">Al Arab Branch 2</td>
+                <td class="">150</td>
+                <td class="">25/07/25</td>
+                <td class="">25/08/25</td>
+                <td class=""> Mon,Wed,Fri</td>
+                <td><span class="badge  statusbadge" style="background-color: #F0F3FF; border:2px solid #0027B2; color:#0027B2;font-size: 12px;font-weight: 600;">Submitted</span>
+                  <td><span class="badge actionbadge " data-bs-toggle="modal" data-bs-target="#editmodel" ><a href="#" class="text-decoration-none "  >Edit</a></span>
+                </td>
+              </tr>
+
+
+              <tr class="t-row-data"  >
+                <td class="">Al Arab</td>
+                <td class="">Al Arab Branch 3</td>
+                <td class="">150</td>
+                <td class="">25/07/25</td>
+                <td class="">25/08/25</td>
+                <td class=""> Mon,Wed,Fri</td>
+                <td><span class="badge  statusbadge"  style="background-color: #FFFDF0; border:2px solid #AF9804; color:#AF9804;font-size: 12px;font-weight: 600;">Under Review</span>
+                  <td><span class="badge actionbadge "><a href="#" class="text-decoration-none ">View</a></span>
+                </td>
+              </tr>
+
+
+              <tr class="t-row-data"  >
+                <td class="">Al Arab</td>
+                <td class="">Al Arab Branch 4</td>
+                <td class="">150</td>
+                <td class="">25/07/25</td>
+                <td class="">25/08/25</td>
+                <td class=""> Mon,Wed,Fri</td>
+                <td><span class="badge  statusbadge"  style="background-color: #F0F0F0; border:2px solid #4B4B4B; color:#4B4B4B;font-size: 12px;font-weight: 600;">Closed</span>
+                  <td><span class="badge actionbadge "><a href="#" class="text-decoration-none ">View</a></span>
+                </td>
+              </tr>
+
+
+              <tr class="t-row-data"  >
+                <td class="">Al Arab</td>
+                <td class="">Al Arab Branch 5</td>
+                <td class="">150</td>
+                <td class="">25/07/25</td>
+                <td class="">25/08/25</td>
+                <td class=""> Mon,Wed,Fri</td>
+                <td><span class="badge  statusbadge"  style="background-color: #F5FAF6; border:2px solid #62AD76; color:#62AD76;font-size: 12px;font-weight: 600;"> Accepted</span>
+                  <td><span class="badge actionbadge "><a href="Managefleet.html" class="text-decoration-none ">Manage Fleet</a></span>
+                </td>
+              </tr>
+
+
+           
+              
+  
+              <!-- Add more rows here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+         <ul class="nopages-render d-flex justify-content-end align-items-center list-unstyled">
+          <li><i class="fa-solid fa-less-than"></i></li>
+              <li class="pageactive"><a href="" >1</a></li>
+              <li><a href="">2</a></li>
+              <li><a href="">3</a></li>
+              <li><a href="">4</a></li>
+              <li><a href="">5</a></li>
+              <li><i class="fa-solid fa-greater-than"></i></li>
+
+         </ul>
+      </div>
+
+ 
+          <!-- PLACE BID MODEL -->
+
+  
+      <div class="modal fade "   id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-modal="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header flex-direction-column">
+              <h5 class="modal-title" id="exampleModalLabel">Place Bid</h5>
+              <p class="modal-desc">Enter your price in the field below. The rest of the details are read-only and come directly from the restaurant’s post.</p>
+             
+             
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="branchname" class="col-form-label">Approximate Oil to Collect (ltr)</label>
+                  <input type="text" class="form-control" id="branchname" placeholder="150" >
+                </div>
+
+                <div class="row">
+                    <div class="form-group col">
+                      <label for="branchcode" class="col-form-label">Schedule Start Datee</label>
+                      <input type="date" class="form-control" id="branchcode" placeholder="25/07/25">
+                    </div>
+                    <div class="form-group col">
+                      <label for="branchadminname" class="col-form-label">Schedule End Date</label>
+                      <input type="date" class="form-control" id="branchadminname" placeholder="25/08/25">
+                    </div>
+    
+                  </div>
+                
+
+
+                <div class="row">
+                  <div class="form-group col">
+                    <label for="branchcode" class="col-form-label">Price ($)</label>
+                    <input type="text" class="form-control" id="branchcode" placeholder="Placeholder">
+                  </div>
+                  <div class="form-group col">
+                    <label for="branchadminname" class="col-form-label">Slot</label>
+                    <input type="text" class="form-control" id="branchadminname" placeholder="Placeholder">
+                  </div>
+  
+                </div>
+
+                <div class="form-group col">
+                  <label for="username" class="col-form-label">Pickup Schedule</label>
+                  <div class="dropdown w-100">
+                    <button 
+                    class="w-100 text-start d-flex flex-wrap align-items-center border rounded px-2 py-2 " 
+                    id="scheduleDropdown" 
+                    data-bs-toggle="dropdown" 
+                    aria-expanded="false">
+                    
+                    <span class="placeholder text-muted me-2">Select days</span>
+                    <div id="selectedChips" class="d-flex flex-wrap"></div>
+                  </button>
+                  
+                
+                    <!-- Dropdown Menu -->
+                    <ul class="dropdown-menu" aria-labelledby="scheduleDropdown">
+                      <li><button class="dropdown-item" data-value="Monday">Monday</button></li>
+                      <li><button class="dropdown-item" data-value="Tuesday">Tuesday</button></li>
+                      <li><button class="dropdown-item" data-value="Wednesday">Wednesday</button></li>
+                      <li><button class="dropdown-item" data-value="Thursday">Thursday</button></li>
+                      <li><button class="dropdown-item" data-value="Friday">Friday</button></li>
+                    </ul>
+                  </div>
+                </div>
+
+               
+
+
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
+              <button type="button" class="btn btn-white border border-black" data-bs-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- EDIT BID MODEL -->
+      <div class="modal fade "   id="editmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-modal="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header flex-direction-column">
+              <h5 class="modal-title" id="exampleModalLabel">Edit Bid</h5>
+              <p class="modal-desc">Only editable field is Price. Other details are fixed as per the restaurant’s post.</p>
+             
+             
+            </div>
+            <div class="modal-body">
+           
+              <form>
+
+                <div id="infoAlert" class=" alert d-flex align-items-center justify-content-between " style="margin-top: 10px; border: 2px solid #91CAFF; width: 100%;  background-color: #E6F4FF; height: 32px; " role="alert">
+                  <div>
+                    <img src="./assets//icon/Tooltip Small.png" alt="">
+                  
+                    <span style="font-size: 12px;color:#1A1A1A;  font-weight: 400; margin-left: 10px;"> You can edit your bid until [date]</span>
+                  </div>
+                
+              </div>
+                <div class="form-group">
+                  <label for="branchname" class="col-form-label">Approximate Oil to Collect (ltr)</label>
+                  <input type="text" class="form-control" id="branchname" placeholder="150" >
+                </div>
+
+                <div class="row">
+                    <div class="form-group col">
+                      <label for="branchcode" class="col-form-label">Schedule Start Datee</label>
+                      <input type="date" class="form-control" id="branchcode" placeholder="25/07/25">
+                    </div>
+                    <div class="form-group col">
+                      <label for="branchadminname" class="col-form-label">Schedule End Date</label>
+                      <input type="date" class="form-control" id="branchadminname" placeholder="25/08/25">
+                    </div>
+    
+                  </div>
+                
+
+
+                <div class="row">
+                  <div class="form-group col">
+                    <label for="branchcode" class="col-form-label">Price ($)</label>
+                    <input type="text" class="form-control" id="branchcode" placeholder="Placeholder">
+                  </div>
+                  <div class="form-group col">
+                    <label for="branchadminname" class="col-form-label">Slot</label>
+                    <input type="text" class="form-control" id="branchadminname" placeholder="Placeholder">
+                  </div>
+  
+                </div>
+
+                <div class="form-group col">
+                  <label for="username" class="col-form-label">Pickup Schedule</label>
+                  <div class="dropdown w-100">
+                    <button 
+                    class="w-100 text-start d-flex flex-wrap align-items-center border rounded px-2 py-2 " 
+                    id="scheduleDropdown" 
+                    data-bs-toggle="dropdown" 
+                    aria-expanded="false">
+                    
+                    <span class="placeholder text-muted me-2">Select days</span>
+                    <div id="selectedChipss" class="d-flex flex-wrap"></div>
+                  </button>
+                  
+                
+                    <!-- Dropdown Menu -->
+                    <ul class="dropdown-menu" aria-labelledby="scheduleDropdown">
+                      <li><button class="dropdown-item" data-value="Monday">Monday</button></li>
+                      <li><button class="dropdown-item" data-value="Tuesday">Tuesday</button></li>
+                      <li><button class="dropdown-item" data-value="Wednesday">Wednesday</button></li>
+                      <li><button class="dropdown-item" data-value="Thursday">Thursday</button></li>
+                      <li><button class="dropdown-item" data-value="Friday">Friday</button></li>
+                    </ul>
+                  </div>
+                </div>
+
+               
+
+
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
+              <button type="button" class="btn btn-white border border-black" data-bs-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+  <div class="overlayform" id="overlayform"></div>
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+     
+
+
+
+     
+  //  DROPDOWN LOGIC FOR ADD OIL
+
+  const dropdownItems = document.querySelectorAll(".dropdown-item");
+  const chipsContainer = document.getElementById("selectedChips");
+  const placeholder = document.querySelector(".placeholder");
+
+  function updatePlaceholder() {
+    placeholder.style.display = chipsContainer.children.length ? "none" : "inline";
+  }
+
+  // Toggle selection
+  dropdownItems.forEach(item => {
+    item.addEventListener("click", () => {
+      const value = item.getAttribute("data-value");
+
+      // if already selected → remove
+      if (item.classList.contains("active")) {
+        item.classList.remove("active");
+        document.querySelector(`.chip[data-value="${value}"]`)?.remove();
+      } else {
+        item.classList.add("active");
+        const chip = document.createElement("div");
+        chip.classList.add("chip");
+        chip.setAttribute("data-value", value);
+        chip.innerHTML = `${value} <span class="remove-btn">&times;</span>`;
+        chipsContainer.appendChild(chip);
+
+        // remove on clicking ×
+        chip.querySelector(".remove-btn").addEventListener("click", () => {
+          chip.remove();
+          item.classList.remove("active");
+          updatePlaceholder();
+        });
+      }
+      updatePlaceholder();
+    });
+  });
+
+  updatePlaceholder();
+
+
+
+
+
+     
+
+
+    const sidebar = document.querySelector(".sidebar")
+    const container=document.querySelector('.container')
+    const overlay = document.getElementById("overlay");
+    const overlayform = document.getElementById("overlayform");
+    function toggleNavbar() {
+      sidebar.classList.add("openmenu");
+      overlay.classList.add("active");
+      document.body.classList.add("noscroll");
+    }
+  
+    function closebtn() {
+      sidebar.classList.remove("openmenu");
+      overlay.classList.remove("active");
+      document.body.classList.remove("noscroll");
+    }
+
+
+
+
+
+    overlay.addEventListener("click", closebtn);
+  </script>
+</body>
+</html>

@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Oil Post page</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+
+
+
+    body {
+      background-color: #F9F9F9;
+      font-family: "Source Sans 3", sans-serif;
+    }
+    .sidebar {
+      width: 256px;
+      height: 100%;
+      transition: left 0.4s ease;
+    }
+    nav a {
+      font-size: 16px;
+      color: #7E8389;
+      margin-bottom: 1rem;
+      width: 224px;
+      height: 44px;
+      border-radius: 8px;
+      display: block;
+      text-decoration: none;
+    }
+    .sidebar{
+      z-index: 1001;
+      left: -256px;
+    }
+    .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+    }
+    .overlay.active{
+      display: block;
+    }
+    .sidebar.openmenu {
+      left: 0;
+}
+.logo{
+  display: flex;
+  gap: 3rem;
+}
+.logo img:first-child{
+   width: 2rem;
+   margin-right: 0rem;
+}
+
+
+ .nav-link{
+  color: #7E8389;
+ }
+ .nav-link:hover ,.activ{
+  background-color: #62AD76; 
+  color: white;
+ }
+
+.lang-btn{
+  color: #7E8389;
+   border-color: #E9E9E9; 
+   width: 131px; 
+   height: 44px;
+}
+.bell-btn{
+  width: 40px; 
+  height: 40px;
+  background-color: #E9E9E9; 
+  border-color: #E9E9E9;
+}
+.userimg{
+  width: 40px; 
+  height: 40px;}
+.userimg img{
+  object-fit: cover;
+  border-color: #E9E9E9;
+}
+header{
+  background-color: #fff; width: 100%; height: 70px;
+}
+.main-content{
+   position: relative;
+    margin-top: 1.5rem;
+}
+
+.card { 
+      overflow: hidden;
+}
+.t-head{
+  min-width: 120px ;
+  background-color: #EBF5ED !important;
+  font-weight: 600;
+  font-size: 16px;
+}
+.main-content {
+   padding: 10px;     
+}
+
+/* SMALLER MOBILE SCREEN SIZE */
+.add-oil-btn{
+  background-color:#62AD76;
+}
+.add-oil-btn:hover{
+  background-color:#a0dfb1!important;
+}
+.nopages-render{
+  margin-top: 10px;
+}
+
+.nopages-render li {
+ 
+  width: 32px;
+  height: 32px;
+   font-weight: 600;
+   text-align: center;
+   padding-top: 3px;
+   
+} 
+/* When nav link is hovered or active */
+.nav-link:hover img,
+.nav-link.activ img {
+  filter: brightness(0) invert(1);  /* makes dark icons white */
+}
+
+.pageactive{
+  border: 2px solid #62AD76;
+  border-radius: 10px;
+}
+
+.nopages-render li  a{
+   font-size: 16px;
+   font-weight: 600;
+   text-decoration: none;
+   color: #1A1A1A;
+} 
+.nopages-render li i{
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 4px;
+  color: #1A1A1A;
+}
+
+.overlayform {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+    }
+    .overlayform.active{
+      display: block;
+    }
+
+
+
+/*OIL POST FORM  */
+.container{
+        display: none;
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 1rem;
+        max-width: 380px;
+        background-color: #fff;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+        z-index: 10002;
+        margin-bottom: 3rem;
+    }
+   .container.active-form{
+     display: block;
+   }
+
+    .addpost-title-div{ 
+        text-align: center;
+    } 
+    .addpost-title-div h2{
+        font-size: 24px;
+        font-weight: 600;
+        margin-top: 1.5rem;
+    }
+    .addpost-title-div p{
+
+        width: 100%;
+        max-width: 480px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #4B4B4B;
+        margin: 0 auto;
+    }
+    .input-div label{
+        font-weight: 600;
+        font-size: 16px;
+        letter-spacing: 0.1px;
+        line-height: 140%;
+    }
+    .input-div input , .custom-select{
+        width: 100%;
+        max-width: 530px;
+        height: 48px;
+        margin: 10px 0;
+        padding-left: 16px;
+        background-color: #FAFAFA;
+        border: 2px solid #E9E9E9;
+        border-radius: 10px;
+    }
+    .btn-group{
+        display: flex;
+        justify-content: center;
+    }
+    
+    
+
+    .post-btn,.cancel-btn{
+        margin-right: 10px;
+        width: 96px;
+        height: 44px;
+        background-color: #62AD76;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        margin-bottom: 0.5rem ;
+        margin-top: 1rem;
+    }
+    .cancel-btn{
+        background-color: transparent;
+        color: #4B4B4B;
+        border:2px solid #4B4B4B;
+    }
+
+    .input-group{
+        display: flex;
+        flex-direction: column;
+    }
+ 
+
+    /* drop menu logic */
+    #scheduleDropdown{
+       background-color: #FAFAFA;
+       margin-top: 10px;
+    }
+
+    .dropdown-menu {
+      width: 100%;
+      transform: translateY(-20%) !important;
+    }
+    .dropdown-item{
+       padding: 10px;
+       background-color: #FAFAFA;
+       color: #1A1A1A !important;
+       
+    } 
+
+    .dropdown-item.active,
+    .dropdown-item:active {
+      background-color: #d4edda !important; /* light green */
+      color: #155724 !important;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      background: #e6f4ea;
+      border: 1px solid #28a745;
+      color: #155724;
+      border-radius: 20px;
+      padding: 2px 8px;
+      margin: 2px;
+      font-size: 14px;
+    }
+    .chip .remove-btn {
+      margin-left: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }   
+
+
+.placeholder{
+  color: rgb(180, 42, 42) ;
+}
+.t-row-data td{
+  font-size: 16px;
+  color: #4B4B4B;
+  font-weight: 400;
+  padding-left: 0.8rem;
+}
+
+.statusbadge,.actionbadge{
+   padding: 10px;
+   border: 1px solid #EB2F96;
+   color: #EB2F96;
+   background-color: #FFF0F6;
+   font-size: 12px!important;
+   font-weight: 600;
+   cursor: pointer;
+}
+.actionbadge {
+  background-color: transparent;
+  font-size: 14px;
+  border: 1px solid #62AD76;
+  
+}
+.placeholder{
+  background-color: transparent !important;
+}
+.actionbadge a{
+  color: #62AD76;
+
+}
+.nav-link img{
+  width: 18px;
+  margin-bottom: 0.3rem;
+  margin-right: 0.1rem;
+ }
+
+.input-div input ,.input-div select{
+  color: #7E8389;
+}
+
+ .input-div input::placeholder{
+      color: #7E8389;
+
+ }
+
+@media screen and (max-width:392px) {
+   .search-input{
+        width: 190px;
+   }
+   .container{
+        position: absolute;
+        top: 0;
+        left: unset;
+        width: 100%;
+        max-width: 350px;
+        background-color: #FFFFFF;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+        z-index: 10002;
+    }
+  }
+  
+/* TABLET VIEW  */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+ /*OIL POST FORM  */
+.container{
+      display: none;
+       position: absolute;
+       top: 0rem;
+       left: 20%;
+        width: 100%;
+        max-width: 600px;
+        background-color: #FFFFFF;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+          z-index: 10002;
+    }
+   .container.active-form{
+     display: block;
+   }
+
+    .addpost-title-div{ 
+        text-align: center;
+    } 
+    .addpost-title-div h2{
+        font-size: 24px;
+        font-weight: 600;
+        margin-top: 1.5rem;
+    }
+    .addpost-title-div p{
+
+        width: 100%;
+        max-width: 480px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #4B4B4B;
+        margin: 0 auto;
+    }
+    .input-div label{
+        font-weight: 600;
+        font-size: 16px;
+        letter-spacing: 0.1px;
+        line-height: 140%;
+    }
+    .input-div input,select{
+        width: 100%;
+        max-width: 530px;
+        height: 48px;
+        margin: 10px 0;
+        padding-left: 16px;
+        background-color: #FAFAFA;
+        border: 2px solid #E9E9E9;
+        border-radius: 10px;
+    }
+    .btn-group{
+        display: flex;
+        justify-content: center;
+    }
+    
+    form{
+        margin-left: 1.4rem;
+    }     
+
+    .post-btn,.cancel-btn{
+        margin-right: 10px;
+        width: 96px;
+        height: 44px;
+        background-color: #62AD76;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        margin-bottom: 2rem ;
+        margin-top: 1rem;
+    }
+    .cancel-btn{
+        background-color: transparent;
+        color: #4B4B4B;
+        border:2px solid #4B4B4B;
+    }
+    .input-group{
+        display: flex;
+        flex-direction: row;
+
+        gap: 40px;
+    }
+    .input-group>.input-div{
+        width: 245px;
+    }
+    .dropdown-menu{
+      transform: translateY(-100%) !important;
+    }
+}
+
+
+
+@media screen and (min-width: 1025px) and (hover: hover) and (pointer: fine) {
+/* Laptop-only styles */
+
+    .sidebar{
+      z-index: unset;
+      left: unset;
+    }
+    .overlay{
+      display: none;
+    }
+    .overlay.active{
+      display: none;
+    }
+    .main-content {
+        margin-left: 280px;
+        margin-right: 2rem;
+        position: relative;
+      }
+      .t-head{
+  min-width: 130px ;
+ 
+}
+.nopages-render{
+  margin-top: 10px;
+}
+
+.nopages-render li {
+ 
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+   font-weight: 600;
+   text-align: center;
+   padding-top: 3px;
+   
+} 
+
+.pageactive{
+  border: 2px solid #62AD76;
+}
+
+.nopages-render li  a{
+   font-size: 16px;
+   font-weight: 600;
+   text-decoration: none;
+   color: #999999;
+} 
+.nopages-render li i{
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 4px;
+  color: #999999;
+}
+
+/*OIL POST FORM  */
+.container{
+      display: none;
+       position: absolute;
+       top: 0rem;
+       left: 20%;
+        width: 100%;
+        max-width: 600px;
+        background-color: #FFFFFF;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+          z-index: 10002;
+    }
+   .container.active-form{
+     display: block;
+   }
+
+    .addpost-title-div{ 
+        text-align: center;
+    } 
+    .addpost-title-div h2{
+        font-size: 24px;
+        font-weight: 600;
+        margin-top: 1.5rem;
+    }
+    .addpost-title-div p{
+
+        width: 100%;
+        max-width: 480px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #4B4B4B;
+        margin: 0 auto;
+    }
+    .input-div label{
+        font-weight: 600;
+        font-size: 16px;
+        letter-spacing: 0.1px;
+        line-height: 140%;
+    }
+    .input-div input,select{
+        width: 100%;
+        max-width: 530px;
+        height: 48px;
+        margin: 10px 0;
+        padding-left: 16px;
+        background-color: #FAFAFA;
+        border: 2px solid #E9E9E9;
+        border-radius: 10px;
+    }
+    .btn-group{
+        display: flex;
+        justify-content: center;
+    }
+    
+    form{
+       position: relative;
+        margin-left: 1.4rem;
+    }     
+
+    .post-btn,.cancel-btn{
+        margin-right: 10px;
+        width: 96px;
+        height: 44px;
+        background-color: #62AD76;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        margin-bottom: 2rem ;
+        margin-top: 1rem;
+    }
+    .cancel-btn{
+        background-color: transparent;
+        color: #4B4B4B;
+        border:2px solid #4B4B4B;
+    }
+    .input-group{
+        display: flex;
+        flex-direction: row;
+        gap: 40px;
+    }
+    .input-group>.input-div{
+        width: 245px;
+    }
+    .dropdown-menu{
+      transform: translateY(-100%) !important;
+    }
+    .dropdown-menu {
+      width: 100%;
+      transform: translateY(-18%) !important;
+    }
+}
+
+
+
+
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Topbar -->
+
+  <header class="d-flex align-items-center" >
+      <i class="fa-solid fa-bars ms-3 fs-1  " onclick="toggleNavbar()"></i>
+          
+     <div class="d-flex justify-content-end align-items-center px-4 py-3 ms-auto" >
+
+    <button class="lang-btn border border-2 me-3"
+    >
+      Language <i class="fa-solid fa-angle-down ms-2"></i>
+    </button>
+    <button class="bell-btn d-flex align-items-center justify-content-center border border-2 rounded-circle" >
+      <i class="fa-regular fa-bell" style="color: #7E8389;"></i>
+    </button>
+    <div class="ms-3 userimg" >
+      <img src="./assets/personimg.jpg" class="w-100 h-100 rounded-circle border border-2" >
+    </div>
+  </div>
+
+  </header>
+
+  <!-- Sidebar -->
+  <aside class="sidebar position-fixed top-0 bg-dark text-white
+  ">
+      <!-- Logo -->
+      <div class="logo mt-4 mb-4 d-flex align-items-center justify-content-center" >
+        <div>
+  
+           <img src="./assets/icon/logo_icon.png" alt="logo_icon">
+           <img src="./assets/icon/logo_text.png" alt="logo_text">
+          </div>
+  
+          <div>
+            <img src="./assets/icon/right_panel_open_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24 1.png" alt="">
+          </div>
+  
+      </div>
+
+     <!-- Menu -->
+     <nav class="p-3">
+      <a href="Dashboard.html" class=" nav-link px-3 py-2 " >
+         <img src="./assets/icon/streamline-plump_home-1.png" alt="Dashboard_icon"> Dashboard
+        </a>
+      <a href="Oilpost.html" class="activ nav-link px-3 py-2 " >
+        <img src="./assets/icon/hugeicons_oil-barrel (1).png" alt="Barrel_icon">
+        Oil Post</a>
+      <a href="Branches.html" class=" nav-link px-3 py-2 ">
+        <img src="./assets/icon/solar_shop-linear.png" alt="Shop_icon">
+        Branches</a>
+      <a href="#" class=" nav-link px-3 py-2 ">
+        <img src="./assets/icon/solar_money-bag-linear.png" alt="biling_icon">
+        Billing and Invoices</a>
+    </nav>
+  </aside>
+
+  <div class="main-content " >
+    <!-- Search & Add Button -->
+    <div class="d-flex justify-content-between align-items-center mb-3" >
+        <div class="position-relative search-input">
+          <input type="text" class=" form-control ps-5" placeholder="Search">
+          <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary"></i>
+        </div>
+        <button class="btn text-white add-oil-btn" onclick="handleoilform()">
+          <i class="fa-solid fa-plus me-2"></i> Add Oil Post
+        </button>
+      </div>
+  
+     
+      <div class="card ">
+        <div class="table-responsive" >
+          <table class="table align-middle table-borderless">
+            <thead class="" >
+              <tr>
+                <th class="custom-td-padding t-head"  >Oil Qty (ltr)</th>
+                <th class="custom-td-padding t-head">Start Date</th>
+                <th class="custom-td-padding t-head ">End Date</th>
+                <th class="custom-td-padding t-head ">Branch</th>
+                <th class="custom-td-padding t-head ">Slot</th>
+                <th class="custom-td-padding t-head ">Recurring</th>
+                <th class="custom-td-padding t-head ">Status</th>
+                <th class="custom-td-padding t-head ">Actions</th>
+
+              </tr>
+            </thead>
+            <tbody>
+                
+                
+              <tr class="t-row-data"  >
+                <td class="">150</td>
+                <td class="">25/07/25</td>
+                <td class="">25/08/25</td>
+                <td class="">Branch 2</td>
+                <td class="">Evening</td>
+                <td class=""> Mon,Wed,Fri</td>
+                <td><span class="badge  statusbadge">Waiting for Evaluation</span>
+                  <td><span class="badge actionbadge "><a href="Bidsaction.html" class="text-decoration-none ">See Bids</a></span>
+                </td>
+              </tr>
+  
+              
+  
+              <!-- Add more rows here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+         <ul class="nopages-render d-flex justify-content-end align-items-center list-unstyled">
+          <li><i class="fa-solid fa-less-than"></i></li>
+              <li class="pageactive"><a href="" >1</a></li>
+              <li><a href="">2</a></li>
+              <li><a href="">3</a></li>
+              <li><a href="">4</a></li>
+              <li><a href="">5</a></li>
+              <li><i class="fa-solid fa-greater-than"></i></li>
+
+         </ul>
+      </div>
+
+ 
+          <!--  -->
+
+          <div class="container rounded">
+            <div class="addpost-title-div">
+                <h2>Add Oil Post</h2>
+                <p>Share key details for your used oil post so recyclers know what to expect. They’ll review your request and send bids accordingly.</p>
+            </div>
+    
+            <form action="" id="myForm">
+                 <div class="input-div">
+                       <label for="Collectlit">Approximate Oil to COllect(1ltr)</label> <br>
+                       <input type="text" id="Collectlit" placeholder="Placeholder">
+                 </div>
+    
+                 <!-- ----------------------------------- -->
+    
+                 <div  class="input-group">
+    
+                    <div  class="input-div">
+                        <label for="schedulestdate">Schedule Start Date</label> 
+                        <input type="date" id="schedulestdate" placeholder="Placeholder">
+                    </div>
+                    <div  class="input-div">
+                        <label for="scheduleendate">Schedule End Date</label>
+                        <input type="date" id="scheduleendate" placeholder="Placeholder">
+                    </div>
+     
+                 </div>
+                 <!-- ----------------------------------- -->
+                 <div  class="input-group">
+    
+                    <div  class="input-div">
+    
+                        <label for="Branch">Branch</label> 
+                        
+    <select id="Branch" class="custom-select">
+      <option value="" disabled selected hidden>Placeholder</option>
+      <option value="Branch 1">Branch 1</option>
+      <option value="Branch 2">Branch 2</option>
+      <option value="Branch 3">Branch 3</option>
+    </select>
+                        
+                       
+                    </div>
+                    <div  class="input-div ">
+                        <label for="slot">Slot</label> 
+                        <select id="slot" class="custom-select">
+                            <option value="" disabled selected hidden>Placeholder</option>
+                            <option value="Morning">Morning</option>
+                            <option value="Afternoon">Afternoon</option>
+                            <option value="Evening">Evening</option>
+                          </select>
+                    </div>
+     
+                 </div>
+    
+                 <div  class="input-div">
+                    <label for="recuring">Recurring Schedule</label> 
+
+
+                    <div class="dropdown w-100">
+                      <button 
+                      class="w-100 text-start d-flex flex-wrap align-items-center border rounded px-2 py-2 " 
+                      id="scheduleDropdown" 
+                      data-bs-toggle="dropdown" 
+                      aria-expanded="false">
+                      
+                      <span class="placeholder text-muted me-2">Select days</span>
+                      <div id="selectedChips" class="d-flex flex-wrap"></div>
+                    </button>
+                    
+                  
+                      <!-- Dropdown Menu -->
+                      <ul class="dropdown-menu" aria-labelledby="scheduleDropdown">
+                        <li><button class="dropdown-item" data-value="Monday">Monday</button></li>
+                        <li><button class="dropdown-item" data-value="Tuesday">Tuesday</button></li>
+                        <li><button class="dropdown-item" data-value="Wednesday">Wednesday</button></li>
+                        <li><button class="dropdown-item" data-value="Thursday">Thursday</button></li>
+                        <li><button class="dropdown-item" data-value="Friday">Friday</button></li>
+                      </ul>
+                    </div>
+                  
+                   
+              </div>
+    
+               <div class="btn-group">
+                     <button class="post-btn">Post</button>
+                     <button class="cancel-btn" onclick="closeform()">Cancel</button>
+               </div>
+            </form>
+        </div>
+
+
+
+
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+  <div class="overlayform" id="overlayform"></div>
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+     
+
+
+
+
+
+
+
+     
+  //  DROPDOWN LOGIC FOR ADD OIL
+
+  const dropdownItems = document.querySelectorAll(".dropdown-item");
+  const chipsContainer = document.getElementById("selectedChips");
+  const placeholder = document.querySelector(".placeholder");
+
+  function updatePlaceholder() {
+    placeholder.style.display = chipsContainer.children.length ? "none" : "inline";
+  }
+
+  // Toggle selection
+  dropdownItems.forEach(item => {
+    item.addEventListener("click", () => {
+      const value = item.getAttribute("data-value");
+
+      // if already selected → remove
+      if (item.classList.contains("active")) {
+        item.classList.remove("active");
+        document.querySelector(`.chip[data-value="${value}"]`)?.remove();
+      } else {
+        item.classList.add("active");
+        const chip = document.createElement("div");
+        chip.classList.add("chip");
+        chip.setAttribute("data-value", value);
+        chip.innerHTML = `${value} <span class="remove-btn">&times;</span>`;
+        chipsContainer.appendChild(chip);
+
+        // remove on clicking ×
+        chip.querySelector(".remove-btn").addEventListener("click", () => {
+          chip.remove();
+          item.classList.remove("active");
+          updatePlaceholder();
+        });
+      }
+      updatePlaceholder();
+    });
+  });
+
+  updatePlaceholder();
+
+
+
+    const sidebar = document.querySelector(".sidebar")
+    const container=document.querySelector('.container')
+    const overlay = document.getElementById("overlay");
+    const overlayform = document.getElementById("overlayform");
+    function toggleNavbar() {
+      sidebar.classList.add("openmenu");
+      overlay.classList.add("active");
+      document.body.classList.add("noscroll");
+    }
+  
+    function closebtn() {
+      sidebar.classList.remove("openmenu");
+      overlay.classList.remove("active");
+      document.body.classList.remove("noscroll");
+    }
+
+
+
+    function  handleoilform(){
+        container.classList.add("active-form")
+        overlayform.classList.add("active");
+
+    }
+    
+    function closeform(){
+      container.classList.remove("active-form")
+      overlayform.classList.remove("active");
+
+    }
+    
+
+    document.getElementById("myForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+  });
+
+
+    overlay.addEventListener("click", closebtn);
+  </script>
+</body>
+</html>

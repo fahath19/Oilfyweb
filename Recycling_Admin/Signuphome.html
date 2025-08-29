@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up Home page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- GOOGLE FONT  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .fontweight600,
+    input::placeholder {
+      font-family: "Source Sans 3", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 600;
+      font-style: normal;
+    }
+
+    input::placeholder {
+      font-weight: 400;
+      color: #7E8389;
+    }
+
+    body {
+      background-color: #FAFAFA;
+      font-family: Arial, sans-serif;
+    }
+
+    .login-card {
+      max-width: 520px;
+      margin: 60px auto;
+      padding: 30px 30px;
+      border-radius: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .login-logo {
+      display: block;
+      margin: 0 auto 20px;
+      max-height: 60px;
+    }
+
+    .form-check {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .form-check-label {
+      margin-left: 5px;
+    }
+
+    .bottom-text {
+      margin-top: 20px;
+      font-size: 0.9rem;
+    }
+
+    .bottom-text a {
+      font-weight: 600;
+      text-decoration: none;
+      color: grey;
+    }
+
+    .input-group-text {
+      cursor: pointer;
+      background-color: #fff;
+    }
+
+    a.text-decoration-none {
+      color: grey;
+      text-decoration: underline !important;
+    }
+    .adminbtn-group{
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+ 
+    .restaurant-adminbtn,.recycle-adminbtn{
+        background-color: #FAFAFA;
+        border: 2px solid #7E8389;
+        height: 60px;
+        border-radius: 10px;
+        width: 50%;
+        color: #7E8389;
+        font-size: 16px;
+        font-weight: 600;
+    }
+    .restaurant-adminbtn i,.recycle-adminbtn i{
+        color: #7E8389;
+    }
+    .activeadmin-btn{
+        background-color: #F5FAF6;
+        border: 2px solid #62AD76;
+        color: #62AD76;
+
+    }
+    
+    .activeicon{
+        color: #62AD76 !important;
+    }
+    .continue-btn{
+        width: 100%;
+        height: 44px;
+        margin-top: 2rem;
+        background-color: #62AD76;
+        border: none;
+        border-radius: 10px;
+        color: #FFFFFF;
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="login-card">
+      <div class="text-center d-flex align-items-center justify-content-center mb-4">
+        <img src="./assets/icon/login-logo (2).png" alt="logo">
+        <h2 class="fs-1 fontweight600 ms-3 mt-2">Oilfy</h2>
+      </div>
+
+      <h4 class="mb-2 fontweight600 fs-2">Create an Account</h4>
+      <p class="mb-4 text-secondary fontweight600 fs-6 fw-normal">Choose your role to start your registration.</p>
+<div class="adminbtn-group">
+
+          <button class="  restaurant-adminbtn">  <i class="  bi bi-tools  me-2"></i> Restaurant Admin</button>
+          <button class=" activeadmin-btn recycle-adminbtn">  <i class=" activeicon bi bi-recycle me-2"></i>Recycling Company</button>
+        </div>
+        
+        <button class="continue-btn" onclick="window.location.href='Signup.html';">Continue</button>
+
+       
+
+      <div class="bottom-text">
+        Back to  <a href="Signin.html" style="color: #62AD76;">Sign in</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const togglePassword = document.getElementById("togglePassword");
+    const password = document.getElementById("password");
+    const eyeIcon = document.getElementById("eyeIcon");
+
+    togglePassword.addEventListener("click", function () {
+      const type = password.getAttribute("type") === "password" ? "text" : "password";
+      password.setAttribute("type", type);
+
+      if (type === "text") {
+        eyeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round"
+          d="M2.25 12s3.75-6.75 9.75-6.75S21.75 12 21.75 12s-3.75 6.75-9.75 6.75S2.25 12 2.25 12z" />
+          <path stroke-linecap="round" stroke-linejoin="round"
+          d="M12 9.75a2.25 2.25 0 110 4.5 2.25 2.25 0 010-4.5z" />`;
+      } else {
+        eyeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round"
+          d="M3.98 8.223a10.478 10.478 0 00-1.726 3.777c.999 2.982 3.83 6.75 9.746 6.75 1.597 0 3.084-.262 4.428-.732M6.228 6.228a10.451 10.451 0 014.522-1.228c5.916 0 8.747 3.768 9.746 6.75a10.451 10.451 0 01-1.228 2.622M3 3l18 18" />`;
+      }
+    });
+
+    const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      let valid = true;
+
+      const email = document.getElementById('email');
+      if (!email.value.includes('@')) {
+        email.nextElementSibling.classList.remove('d-none');
+        valid = false;
+      } else {
+        email.nextElementSibling.classList.add('d-none');
+      }
+
+      if (password.value.length < 6) {
+        password.parentElement.nextElementSibling.classList.remove('d-none');
+        valid = false;
+      } else {
+        password.parentElement.nextElementSibling.classList.add('d-none');
+      }
+
+      if (valid) {
+        alert("Form submitted successfully!");
+      }
+    });
+  </script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
